@@ -2,16 +2,15 @@ name: Update Hydra Key
 on:
   schedule:
     - cron: '*/5 * * * *'
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: # Explicitly giving write access
+    permissions:
       contents: write
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4 # Updated to v4 for Node 24 support
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
