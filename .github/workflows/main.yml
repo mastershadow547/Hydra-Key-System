@@ -1,0 +1,23 @@
+name: Update Hydra Key
+on:
+  schedule:
+    - cron: '*/5 * * * *' # This triggers every 5 minutes
+  workflow_dispatch: # Allows you to run it manually for testing
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Run Python Script
+        run: python generate_key.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "HydraBot"
+          git config --global user.email "bot@hydra.com"
+          git add key.txt
+          git commit -m "Updated Key"
+          git push
